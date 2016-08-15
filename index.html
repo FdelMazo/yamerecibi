@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <title>¿Ya me recibí? · fede.dm</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+    body {
+        text-align: center ;
+        padding: 2rem;
+        margin: 0 auto;
+    }
+    </style>
+</head>
+
+<body>
+<h1>¿Ya me recibí?</h1>
+<h3 id='answer' style='color:red'>No</h3>
+<button onclick=reload()>¿y ahora?</button>
+
+<script>
+function getAnswer() {
+    let answers = ["No", "Nop", "Uf, casi", "Not", "En absoluto", "Para nada", "Nou"]
+    return answers[Math.floor(Math.random()*answers.length)];
+}
+
+function reload() {
+    let btn = document.getElementById('answer')
+    btn.innerHTML = `
+    <div class="hollow-dots-spinner" :style="spinnerStyle">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>`
+    setTimeout(function () { btn.innerHTML = getAnswer();}, 2000);
+}
+</script>
+
+<style>
+    .hollow-dots-spinner, .hollow-dots-spinner * {
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .hollow-dots-spinner {
+      height: 15px;
+      width: calc(30px * 3);
+    }
+
+    .hollow-dots-spinner .dot {
+      width: 15px;
+      height: 15px;
+      margin: 0 calc(15px / 2);
+      border: calc(15px / 5) solid #ff1d5e;
+      border-radius: 50%;
+      float: left;
+      transform: scale(0);
+      animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms;
+    }
+
+    .hollow-dots-spinner .dot:nth-child(1) {
+      animation-delay: calc(300ms * 1);
+    }
+
+    .hollow-dots-spinner .dot:nth-child(2) {
+      animation-delay: calc(300ms * 2);
+    }
+
+    .hollow-dots-spinner .dot:nth-child(3) {
+      animation-delay: calc(300ms * 3);
+
+    }
+
+    @keyframes hollow-dots-spinner-animation {
+      50% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+</style>
+</body>
