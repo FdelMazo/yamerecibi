@@ -16,14 +16,13 @@
 <body>
 <h1>¿Ya me recibí?</h1>
 <h3 id='answer' style='color:red'>No</h3>
-<button onclick=reload()>¿y ahora?</button>
+<button id="reload" onclick=reload()>¿y ahora?</button>
+<div id="img" align="center" style="display: none;">
+<img src="./photo.jpg" style="max-width: 80vw;"/>
+</div>
+
 
 <script>
-function getAnswer() {
-    let answers = ["No", "Nop", "Uf, casi", "Not", "En absoluto", "Para nada", "Nou"]
-    return answers[Math.floor(Math.random()*answers.length)];
-}
-
 function reload() {
     let btn = document.getElementById('answer')
     btn.innerHTML = `
@@ -32,7 +31,12 @@ function reload() {
         <div class="dot"></div>
         <div class="dot"></div>
     </div>`
-    setTimeout(function () { btn.innerHTML = getAnswer();}, 2000);
+    setTimeout(function () {
+      btn.innerHTML = "Si!";
+      btn.style = "color:forestgreen"
+      document.getElementById('reload').remove()
+      document.getElementById('img').style = "display: block"
+    }, 1500);
 }
 </script>
 
